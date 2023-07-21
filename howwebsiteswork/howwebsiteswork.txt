@@ -32,4 +32,11 @@ too as people tend to use the same credentials.
 When accessing a web application for security purposes one of the first things we should do is to review the page source
 for any credentials, hidden links, or any potentially useful information.
 
+HTML Injection
+HTML Injection is a vulnerability that happens when a page fails to sanitize or validate user input and unfiltered input is
+displayed on the page. When websites don't filter what is displayed, attackers can then type HTML or JS code that will be executed
+client side altering the functionality of the page. For example, in an unfiltered input field, an attacker can enter their own
+HTML tags and JS scripts that will be executed as pure code. 
+The general rule is to never trust user input, the developer should always sanitize what the user inputs, such as removing HTML 
+tags and JS keywords. 
 
