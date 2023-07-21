@@ -19,3 +19,4 @@ JS is places within <script> tags or sourced using <script src='src.js'></script
 JS can be used to add functionality to the page as well as handle data and update the
 user's view. It can be used with HTML elements to react to events such as onclick, etc.
 
+Sensitive Data Exposure
