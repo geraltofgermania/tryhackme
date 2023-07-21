@@ -20,3 +20,16 @@ JS can be used to add functionality to the page as well as handle data and updat
 user's view. It can be used with HTML elements to react to events such as onclick, etc.
 
 Sensitive Data Exposure
+
+Sensitive Data Exposure occurs when websites fail to remove or protect sensitive data from the user side, that is, the front
+end source code.
+We can view the site's source code and sometimes developers forget to remove login info, private links, etc. which
+may be found mixed in the HTML.
+For example if you were to find any information it could be used to further your attack: you could use temporary
+credentials found in the source code to login other parts of the web application and they could work in the backend
+too as people tend to use the same credentials.
+
+When accessing a web application for security purposes one of the first things we should do is to review the page source
+for any credentials, hidden links, or any potentially useful information.
+
+
