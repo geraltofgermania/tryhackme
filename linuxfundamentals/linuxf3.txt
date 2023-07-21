@@ -1,0 +1,150 @@
+Linux Fundamentals 3 - Finale
+
+Text Editors
+
+Nano
+
+VIM
+
+General/Useful Utilities
+
+wget: This command basically allows you to download files as if it were from
+the browser. It uses HTTP.
+wget https://url/to/file.txt
+
+Transfering files from your Host - SCP(SSH)
+
+Secure copy or scp allows you to transfer files form your host to a remote
+system and from the system to your host. It uses ssh protocol for both
+authentication and encryption. We have to know a username and password on
+our current system and in the remote system.
+
+Transfering files from our current system to a remote one:
+	scp /path/tofile/inoursystem user@REMOTEIP:/path/to/file
+Transfering files from a remote system to ours if we are not logged in:
+	scp user@REMOTEIP:/path/to/file /path/tofile/inoursystem
+
+Serving Files from your Host - WEB
+
+We can turn our machine into a simple web server to share files using
+python's HTTPserver (http.server) module which start a simple webserver
+in the folder in which the command is executed (python3 -m http.server).
+This simple HTTPserver cannot index files so you must know the exact location
+of the files you want to download. We can use wget or curl to download files
+
+Ex: wget http://0.0.0.0:PORT/path/to/file
+
+Processes 101
+
+Processes are the programs running on your machine, they are managefed by
+the kernel. They will have a process ID according to the order in which they
+started, i.e. the 60th's process PID is 60.
+
+The command ps lists the ongoing processes in our session and some info.
+Adding 'aux' to the command list processes from other users and independent
+processes
+
+The command top shows us real time system info that refreshes every 10 seconds
+and when we navigate it. 
+
+Managing Processes
+
+We can send signals to terminate processes with the command kill and a PID.
+ex: kill 1333
+We can also use signals to specify the way kill terminates a process, some
+these signals can be: SIGKILL, SIGTERM, etc.
+ex: kill -SIGKILL 1333
+
+    SIGTERM - Kill the process, but allow it to do some cleanup tasks beforehand
+    SIGKILL - Kill the process - doesn't do any cleanup after the fact
+    SIGSTOP - Stop/suspend a process
+
+How Do Processes Start?
+
+Firstly, namespaces are used by the operating system to split up resources
+such as ram and cpu, processes within that slice have access to a certain
+amount of computing power, which is a small portion of what is available over-
+all.
+
+Namespaces are good for security since only processes within the same namespace
+are able to see one another, otherwise they are isolated.
+
+A process that has a PID of 0 is a process that start right as the system boots
+such as systemd. After that, any process we want to start will start as a child
+of systemd and is controlled by systemd and shares the resources, but it runs as
+its own process to make it easier to identify and the likes.
+
+Getting Processes to Start on Boot
+
+It is important to start some applications on boot for example webserver and
+the like. The command systemctl allows us to create a link between systemd and
+a command to start on boot,or to start, stop, or restart services/commands/
+daemons.
+ex1: systemctl enable apache2 (starts apache2 on boot)
+	systemctl disable apache2 (apache2 no longer start on boot)
+ex2: sytemctl start apache2 (starts apache2 for the current session)
+
+An Introduction to Backgrounding and Foregrounding in Linux
+
+In Linux, processes can run in the bg or the fg, the operator & can send a
+command to the background, we can use fg and the job number to bring ir back.
+This is useful for things that we don't need the output of like copying files
+and the like. Crtl + Z can be used to stop a process and send it to the bg.
+
+Maintaining your System: Automation
+
+You may want to schedule a certain action to happen at boot or an specified time
+such as launching programs or making back ups. For this the Cron process provides
+a way to do it. Cron allows you to automate actions based on scheduling by editing
+the crontab, that is the file that cron reads, for this use the command crontab -e.
+The command syntax is simple, it takes the arguments minute, hour, day of the
+month, month of the year, and day of the week. Cron also lets us use * for any
+value we do not want to specify.
+Ex: the cp command will run at 1700 every first day of the week
+0 17 * * 1 cp /usr/share/logs /tmp/logsbackup/logs
+Note that cron run commands based on its notion of time and timezone.
+
+Maintaining your System Package Managment
+
+One of linux's best features is seen here, access to and the merit of open source tools.
+When developers want to distribute tools they submit them to an 'apt' repository and
+upon aproval these are released to users.
+Usually under /etc/apt/ there will be  a sources.list files that list the repositories
+your machine has access to to download and update packages, this file can be edited
+and you can add repos of your own choosing, for this use the command add-apt-repository
+or simply edit the file.
+
+Managing your Repositories - Adding and Removing
+
+We use the apt command to install and update packages, apt however, is a suit of tools.
+When adding repositories manually, the first thing we need to do is obtain a Gnu
+Privacy Guard (GPG) key
+EX: wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+Note that in the command above "-" is the instance of the GPG key. So that command
+downloads it and adds it to our list of trusted keys. Now we can add the repository
+to our sources, a good practice is to have a file for each 3rd party developer we add
+So we can create a new file for, in this example sublime, in the sources.list.d
+directory
+touch /etc/apt/sources.list.d/
+After this can use any text editor to add the repository from the developers' web-
+site to this file and save it.
+We need to use apt update to recognize this new repo and then we can install our
+software using apt install nameofsoftware
+
+Removing software is just as easy, we can manually remove the files we created and
+then use apt remove nameofsoftware, or we can use the command 
+add-apt-repository --remove ppa:PPA_Name/ppa
+Then update apt.
+
+Note that you will know when you used a PPA and its name as it a different process
+than doing it manually.
+
+Maintaining your System - Logs
+
+Located in /var/log/ these files and folder are updated by the operating system in
+a process called rotating. Here we can find logs for services running in the
+machine, from an apache2 server to firewall services or brute force detection
+services. These files are a good way of managing the health of your system as
+they log every logging request, authentication attempt, etc. so system admins
+can check this to investigate an intruder's activity, therefore they are very
+important.

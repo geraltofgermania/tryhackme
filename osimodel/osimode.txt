@@ -1,0 +1,117 @@
+The OSI Model
+
+The Open Systems Interconnection model is an absolute fundamental model used in
+networking. This model provides the framework that dictates how every device
+send, received, and interprets data.
+
+One of the main advantages of the OSI model is that devices can have different
+functions and designs on a network while communicating with other devices. Data
+sent across a network that follows the uniformity of the OSI model can be
+understood by other devices.
+
+The OSI model consists of 7 layer through which data travels, processes take
+place, and information is added to this data in a process called encapsulation.
+
+Let's take a look at each layer.
+
+7. Application
+
+The highest layer is the one we are most familiar with because it includes things
+like browsers, email clients, file managers, etc. basically in this layer we find
+rules put in place that dictate how the user interacts with the data being received.
+An example of a protocol that runs on the Application layer is the Domain Name
+System (DNS).
+
+6. Presentation
+
+The sixth later of the OSI model acts as the translator for data coming to and
+from the Application layer. This layer makes sure that data is standarized, for
+example when using different email clients between two computers, the email
+contents are still displayed. Additionally, security features such as HTTPS
+encryption occur in this layer.
+
+5. Session
+
+Once data has been formated in the Presentation layer (6), then layer 5 Session
+begins to create a connection between the two devices involved before the data is
+sent, after all the checks are done and the connection is established, this is
+known as the session, data is split up in small packets that are then sent one at
+a time. This is beneficial because if the connection is lost only the unsent packets
+need to be sent. So long as the connection exists, the session exists, sessions
+are unique and data can only travel across one session.
+
+4. Transport
+
+In the transport layer data is sent across a network following one of two protocols:
+Transmission Control Protocol (TCP) or User Datagram Protocol (UDP):
+
+TCP has check to make sure that the connection is stable and all data packets are
+received for data integrity. However, this requires a much stronger connection
+and can cause a device to become bottle necked since the connection is reserved
+until all data has been transmitted. If a small chunck of data is lost the big
+chunck is rendered useless. This protocol is used for file sharing, emails, etc.
+services in which file integrity is important
+
+UDP lacks any of these controls and does not check for data integrity. Therefore
+it is faster but data integrity is not guaranteed if a connection is weak. UDP
+allows Layer 7 to decide how long packets will take to be transmitted, for example
+quality on video streaming. Like in the previous example, UDP is often used for
+things like video streaming in which if data is lost then the result is just a
+few pixelated frames.
+
+3. Network
+
+This is where routing and reassembly occurs. Routing determines the most optimal
+path for data packets to take. Protocols take place at this layer of the OSI
+model that determine the path that data should take:
+
+Open Shortest Path First (OSPF) and Routing Information Protocol (RIP), the factors
+that decide which path is taken include the following:
+
+What path is the shortest? That is, least amount of devices that the packet needs
+to travel through.
+What path is most reliable? That is, has data been lost in this path before.
+Which path has the faster physical connection? For example copper cable compared
+to much faster optic fiber.
+
+2. Data Link
+
+The data link layer focuses on the physical addressing of the transmission, the
+data link layer receives packets from the network layer and adds in the physical
+address  MAC of the destination. This MAC address belongs to the Network
+Interface Card of the destination system and is set by the manufacturer, it
+cannot be changed, but can be spoofed.
+It is also the responsability of the Data Link layer to present the data in a
+format suitable for transmission.
+
+1. Physical
+
+This layer is simply the physical layer, that is cables and the such, hardware.
+Devices use electrical signals to transfer data between each other in binary.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

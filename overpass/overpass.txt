@@ -1,0 +1,47 @@
+target: 10.10.27.135
+they may be using caesar cypher as encryption
+remember that when you have several users and want to use hydra, create a file with all the loggins and use -L to run all these together
+
+Check the JS code, not just the source code in HTML, look for vulnerabilities here.
+For example in this code we find that if credentials are incorrect then:
+ if (statusOrCookie === "Incorrect credentials") {
+        loginStatus.textContent = "Incorrect Credentials"
+        passwordBox.value=""
+but otherwise:
+else {
+        Cookies.set("SessionToken",statusOrCookie)
+        window.location = "/admin"
+    }
+}
+
+So if we use the console to set theis cookie, we should be able to get a successful login.
+in console: Cookies.set("SessionToken", "")
+
+After doing this we find a ssh key in the page, with the username 'james'
+so after putting this key in a file called 'james_id_rsa' we use ssh to john to prepare
+to crack this file's password.
+
+sudo /usr/bin/ssh2john james_id_rsa > forjohn.txt
+
+After we do this we attempt to crack this password using john.
+
+sudo john forjohn.txt --wordlist=/usr/share/wordlists/rockyou.txt
+
+after running john we have the following credentials: james: james13
+
+now we gotta use ssh with the switch -i for identity file.
+
+ssh -i james_rsa_id james@10.10.27.135 
+
+NOTE it is important to have run chmod 600 filename as it is required for this type of ssh login
+
+Once we login we find a note that mentions an automated build job which propably refers to a crontab
+so we check it with cat /etc/crontab, when we do this we find that what it does is fetch the build from
+a website and pipes it to bash, to exploit this we would need to somehow redirect the domain to our ip.
+
+Then we will use SCP to copy linpeas and see if we can escalate our privileges
+
+$ scp -i james_rsa_id  /usr/share/peass/linpeas/linpeas.sh james@10.10.27.135:/dev/shm
+
+When we do this, we find that /etc/hosts is world-writeable meaning that we can replace the localhost IP
+with our own and serve a malicious bash script.

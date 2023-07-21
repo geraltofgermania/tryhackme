@@ -1,0 +1,21 @@
+How Websites Work
+
+When you visit a website your browser makes a request to a web server for information about
+the page you want to visit. The server responds with data your browser uses to show you the
+website.
+
+There are two major sides to websites:
+Front End (Client Side): the way your browser renders a website
+Back End (Server Side): a server that process your requests and returns a response.
+
+Websites are made of 3 individual languages:
+HTML HyperText Markup Language
+CSS for Styling
+JavaScript for functionality
+
+JavaScript
+
+JS is places within <script> tags or sourced using <script src='src.js'></script>
+JS can be used to add functionality to the page as well as handle data and update the
+user's view. It can be used with HTML elements to react to events such as onclick, etc.
+

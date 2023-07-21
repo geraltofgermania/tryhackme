@@ -1,0 +1,19 @@
+Pickle Rick
+
+nmap scan: 22 ssh, 80 http
+
+check page source: 
+	username found in comment: R1ckRul3s
+	
+from robots.txt: Wubbalubbadubdub (this is the password, never doubt yourself in trying something again.)
+
+from using gobuster with common-php-files we get: login.php, portal.php
+
+from comments in portal.php: Vm1wR1UxTnRWa2RUV0d4VFlrZFNjRlV3V2t0alJsWnlWbXQwVkUxV1duaFZNakExVkcxS1NHVkliRmhoTVhCb1ZsWmFWMVpWTVVWaGVqQT0==
+
+exploring the file system using command injection
+
+see https://thefluffy007.com/2019/03/14/tryhackme-pickle-rick-ctf/
+
+
+what did we learn? never ignore small details again

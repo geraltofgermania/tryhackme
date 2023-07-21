@@ -1,0 +1,31 @@
+Packets and Frames
+
+Packets and frames are both small chuncks of information that when put together make
+a bigger piece of information or message, however, they are not the same. Frames
+are in layer 2, no information like IP is available. They are like envelopes that
+when opened contain data packets. This process is called encapsulation.
+
+At this point we can say that when we are talking about IP addresses, we'll be talking
+about packets, and when talking about encapsulating information being stripped away
+we'll be talking about frames.
+
+Packets are an efficient way to share data across networked devices because data is
+split up instead of being sent at once, avoiding bottlenecking. For example when you
+load an image in your browser, the entire image is not loaded at once, rather packets
+are put together one at a time.
+
+Packets have different structures that depend upon the type of packet being sent. 
+Networkig is full of standards and rules that dictate how the packet is handled on a
+device. With the gigantic number of devices connected to the internet, standarization
+is extremely important. Packets contain headers that come with information, a packet
+that follows the Internet Protocol (IP) some important headers include: 
+
+Header	Description
+Time to Live:		This field sets an expiry timer for the packet to not clog up your network if it never manages to reach a host or escape!
+Checksum:		This field provides integrity checking for protocols such as TCP/IP. If any data is changed, this value will be different from what was expected and therefore corrupt.
+Source Address:		The IP address of the device that the packet is being sent from so that data knows where to return to.
+Destination Address:	The device's IP address the packet is being sent to so that data knows where to travel next.
+
+Transmission Control Protocol TCP and the Three Way Handshake
+
+

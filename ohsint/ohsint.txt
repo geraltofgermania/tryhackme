@@ -1,0 +1,11 @@
+OhSINT
+
+In this room we extract information from an image seemingly useless using
+exiftool
+
+exiftool image.format
+
+maigret for username look up
+
+BssidsiteLOL: wiggle.net
+

