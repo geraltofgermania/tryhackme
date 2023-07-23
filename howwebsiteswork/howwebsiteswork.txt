@@ -40,3 +40,36 @@ HTML tags and JS scripts that will be executed as pure code.
 The general rule is to never trust user input, the developer should always sanitize what the user inputs, such as removing HTML 
 tags and JS keywords. 
 
+Putting it all Together 
+
+When you request a website your computer uses DNS to figure out the address of the server. Then HTTP is used to share 
+HTMl, CSS, and JS which are then used to render the webpage on your browser.
+
+Other Components
+
+Load Balancers: when a website's traffic starts getting large or running an application that requires high availability
+, one server might no longer do the job. Load balancers ensure that websites can handle the load and provide a failover
+if a server becomes unresponsive. When you make a request to a site with a load balancer, it will receive your request
+and then forward it to one of the servers behind it. Load balancers use several types of algorithms to choose which server
+they'll send your request to.
+Load balancers also perform periodic health checks, if a server doesn't respond appropriately or doesn't respond at all, 
+the load balancers stops forwarding it requests until it responds appropriately again. 
+
+Content Delivery Networks CDN
+
+A Content Delivery Network allows you to hold static files from your website such as HTML, CSS, JS, images, and videos
+accross many servers all over the world. When the client makes a request, the CDN figures out which server is physically
+closest and sends the request there. This helps with traffic and speed.
+
+Databases
+
+Websites need to store and recall information, for this they can communicate with databases which can range from
+a simple text file to complex clusters of servers. Some common data bases: MySQL, MSSQL, MongoDB, GraphQL, Postgres.
+
+Web Application Firewall WAF
+
+The WAF sits between a request and the web server, it's primary purpose is to protect the webserver against common
+attacks. It does this by analyzing the request for common attacks such as if the request was sent from an actual
+server rather than a bot, and rate limiting which only allows a certain max number of requests per IP per second.
+If the request is deemed an attack it is dropped and never sent to the server.
+
