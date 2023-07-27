@@ -73,3 +73,47 @@ attacks. It does this by analyzing the request for common attacks such as if the
 server rather than a bot, and rate limiting which only allows a certain max number of requests per IP per second.
 If the request is deemed an attack it is dropped and never sent to the server.
 
+How Web Servers Work
+
+A web server is software that listens for incomming connections and then utilizes HTTP protocol to deliver content to its
+clients. The most common web servers we'll find are Apache, Nginx, IIS, and NodeJS. A web server delivers files from its
+root directory which is defined in its software settings. For example Apache and Nginx share the same default location in
+Linux of /var/www/html and IIS uses C:\inetpub\wwwroot for Windows operating systems.
+
+If you were to request the file www.example.com/image.jpg, Apache would return /var/www/html/image.jpg from its local
+hard drive.
+
+Virtual Hosts
+
+Web servers can host multiple websites in what is called virtual hosts. The webserver checks which host is bein requested
+in the HTTP headers and if found the requested website is provided, otherwise the default website is provided. Virual hosts 
+are simply text based configuration files that map websites to different directories, for example, /var/www/website_one being 
+a virtual host and /var/www/website_two being another. There is no limit as to how many hosts a server may have.
+
+Static vs Dynamic Content
+
+Static content as the name suggests is content that never changes such as CSS, JS, images, or videos. It could also include
+HTML that never changes. These are files that are served directly from the webs server with no changes made to them.
+
+Dynamic content is content that changes with each request, for example a blog page that updates to the latest post, or a
+search result page in which result are dependent on the words used to search. These changes and processing are happening 
+in the backend with the use of programming and scripting languages. You cannot view these as everything that is displayed 
+in your browser is part of the front end.
+
+Scripting and Backend Languages
+
+These languages are what make the website interactive and useful to the user, they are able to call external services, interact
+with data bases, process data for the user and more. Some backend languages are PHP, Python, Ruby, NodeJS, Perl, etc. 
+
+A very basic PHP example of this would be if you requested the website http://example.com/index.php?name=adam
+
+If index.php was built like this:
+
+<html><body>Hello <?php echo $_GET["name"]; ?></body></html>
+
+It would output the following to the client:
+
+<html><body>Hello adam</body></html>
+
+You'll notice that the client doesn't see any PHP code because it's on the Backend. This interactivity opens up a lot more security
+issues for web applications that haven't been created securely, as you learn in further modules.
