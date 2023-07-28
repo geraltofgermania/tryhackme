@@ -1,0 +1,9 @@
+Windows Fundamentals Part 1
+
+Windows has a long history starting in 1985 all the way to the present day, some notable versions
+are Windows XP, Vista, Windows 7, Windows 8, Windows 10, and presently 11.
+
+Windows is the leading OS in the market prompting it to be the main target of hacker and others.
+There is also a Windows Server version.
+
+The Windows File System
