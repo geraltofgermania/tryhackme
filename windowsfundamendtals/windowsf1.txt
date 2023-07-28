@@ -7,3 +7,46 @@ Windows is the leading OS in the market prompting it to be the main target of ha
 There is also a Windows Server version.
 
 The Windows File System
+
+The file system used in new versions of windows is called the New Technology File System, NTFS,
+older versions of the OS used FAT16/32 which stands for File Allocation Table, or also High Performance
+File System, HPFS.
+
+NTFS is knows as a journaling file system which means it is capable of restoring folders and files from
+a log file, this function is not possible with FAT. NTFS addresses limitation of FAT:
+
+Supports files larger than 4GB
+Set specific permissions for files and folders
+Folder and file compression
+Encryption (Encryption File System of EFS)
+
+In NTFS you can set permissions that grant or deny access to folders and files
+The permissions are:
+
+Full control
+Modify
+Read & Execute
+List folder contents
+Read
+Write
+
+How can you view the permissions for a file or folder?
+
+Right-click the file or folder you want to check for permissions.
+From the context menu, select Properties.
+Within Properties, click on the Security tab.
+In the Group or user names list, select the user, computer, or group whose permissions you want to view.
+
+You can refer to Microsoft Documentation to get a better understanding of the NTFS permissions and Special
+Permissions
+
+Another feature of NTFS is Alternate Data Stream ADS, every file has at least one data stream and ADS allows
+files to contain more than one data stream. Natively Windows explorer doesn't show ADS to the user but there
+are third party executables that can be used to view these. Powershell allows you to view ADS for files.
+From a security perspective malware writers have used ADS in order to hide data from the users, not all the
+uses of ADS are malicious as there are identifiers written to ADS that detect when a file was downloaded from
+the Internet for example. To learn more about ADS refer to https://blog.malwarebytes.com/101/2015/07/introduction-to-alternate-data-streams/
+
+The Windows\System32 Folders
+
+
