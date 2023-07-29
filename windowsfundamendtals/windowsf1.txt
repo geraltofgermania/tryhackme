@@ -49,4 +49,44 @@ the Internet for example. To learn more about ADS refer to https://blog.malwareb
 
 The Windows\System32 Folders
 
+The Windows folder is traditionally located at C:\Windows, and contains the operating system. This folder does
+not have to reside here, it could be located within any folder and not necessarily in the C drive.
+
+This is where environment variables come into play, environment variables store information about th environmet
+about the operating system environment. Information such as operating system path, number of processors used
+by the operating system, and the location of temporary folders.
+
+The environment variable for the Windows Directory is %windir%
+
+There are many folders within C:\Windows, one of the most important ones is System32 which contains many files
+required for OS functioning and therefore you should be careful when interacting with this folder.
+
+User Accounts, Profiles, and Permissions
+
+User accounts fall into two categories in Windows systems: Administrator and Standard User.
+
+The user account type will determine what actions can that user perform on that specific Windows System.
+An administrator can make changes to the system such as adding and deleting users and groups while a local
+user can only perform changes to folders and files attributed to the user and can't perform system level
+changes.
+
+There are several ways to determine which user accounts exist on a system, one way is to type 'Other users'
+in the start menu. A Window should open and the other users should be visible, if you are the administrator
+you can see the option add someone else to this PC or upon clicking on a user the options to change account
+type or remove the user. The option highlighted in account type is the type of user that user is.
+
+When users are created the location for their profiles will fall under C:\Users. For example C:\Users\John
+The creation of the user's profile is completed upon their first login to the system, several messages will
+be seen on the screen about User Profile Services and Personalized settings. Each user has a set of folders
+that are the same: Desktop, Documents, Downloads, Music, Pictures...
+
+Another way to access this information and more is using Local User and Group Management:
+	Right click on the start menu and click Run
+	Then type the lusrmgr.msc
+Now you should see two folders: Users and Groups. If you click on Groups you can see the names of the local
+groups alongside with a description for each group. Each Group has a set of permissions to it that Users in
+said Group inherit. A user can be assigned to several groups.
+
+User Account Control
+
 
