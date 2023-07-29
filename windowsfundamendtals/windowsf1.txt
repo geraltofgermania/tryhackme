@@ -89,4 +89,13 @@ said Group inherit. A user can be assigned to several groups.
 
 User Account Control
 
+Most users use their computers in the local administrator account, however this level of elevated privileges are
+not needed for simple actions such as browsing the internet or editing documents. Running on the administrator
+account is more risky since the system can be modified thus increasing the chance of compromising the system.
+This is why in Windows Vista the feature of User Account Control was introduced. This feature prompts the user
+when an action requires elevated privileges instead of simply allowing the action to take place. NOTE, User Account
+Control (UAC) does not apply to the built in administrator account by default. 
 
+When a user that is not an administrator tries to install a program or perform an action that requires higher
+priviledges, the user is prompted to enter administator credentials. A shield icon will appear on files in which
+UAC will prompt for higher privilege credentials.
