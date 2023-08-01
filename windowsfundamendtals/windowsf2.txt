@@ -1,0 +1,39 @@
+System Configuration/Msconfig.ext
+
+For more info check: https://docs.microsoft.com/en-us/troubleshoot/windows-client/performance/system-configuration-utility-troubleshoot-configuration-errors
+
+Launch System Configuration by searching 'Msconfig' in the start menu. You will need local
+administrator privileges
+
+System configuration is used for advance troubleshooting and its main purpose is to help
+diagnose start up issues.
+
+It is composed of 5 tabs across the top:
+
+General
+
+In General we can choose what devices and services Windows will load on boot.
+We have three options: NORMAL, DIAGNOSTIC, and SELECTIVE
+
+Boot
+
+In Boot we can choose various options for the operating system such as: No GUI Boot,
+and we can see the drive and folder we boot from.
+
+Services
+
+In Services we can see all the services configured for the system regardless of status
+(running or stopped). We can see their status as well here.
+
+Startup
+
+In the Startup tab you will be asked to use Task Manager to manage start up items.
+(Start up items are those programs users install such as Steam or Spotify that start on boot.
+This can be enabled and disabled from Task Manager(taskmgr). System Configuration is not a Startup
+Manager.
+
+Tools
+
+The Tools tab lists many tools that can be used to further configure the system. You will
+be provided a small description of what the tool does. There is also a box that shows the
+path to the tool and the option to Launch it allowing you to open the tool from Msconfig.
