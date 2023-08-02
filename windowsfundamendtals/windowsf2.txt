@@ -37,3 +37,7 @@ Tools
 The Tools tab lists many tools that can be used to further configure the system. You will
 be provided a small description of what the tool does. There is also a box that shows the
 path to the tool and the option to Launch it allowing you to open the tool from Msconfig.
+
+Computer Management/compmgmt.msc
+
+
