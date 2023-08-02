@@ -40,4 +40,20 @@ path to the tool and the option to Launch it allowing you to open the tool from 
 
 Computer Management/compmgmt.msc
 
+The Computer Management tool (compmgmt.msc) is comprised of three sections:
+
+1. System Tools
+	Task Scheduler: We can create common tasks that will be automatically carried out by
+	the computer at the schedule time. This can be an application or script that can run
+	at any time (as scheduled).
+
+	Event Viewer: allows us to view the events that have occured on a system. These records
+	of events can be viewed as an audit trail and can be use to monitor the activity of a
+	system.
+	Event Viewer is comprised of three panes: The leftmost pane shows the types of logs we can
+	access. The middle pane will show a general overview of the log provider accessed chosen
+	from the leftmost pane. The right pane is the Actions menu.
+	NOTE: The standard logs are visible under Windows Logs.
+
+	Shared Folders:
 
