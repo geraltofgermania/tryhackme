@@ -55,5 +55,24 @@ The Computer Management tool (compmgmt.msc) is comprised of three sections:
 	from the leftmost pane. The right pane is the Actions menu.
 	NOTE: The standard logs are visible under Windows Logs.
 
-	Shared Folders:
+	Shared Folders: Here you can see a complete list of shares and shared folders that others
+	can connect to. Under Shares are the default remote admin, C$, and Windows share. Under
+	Session you can see the users connected to the Shares. Finally, all of the files that
+	connected users access will be listed under Open Files.
+
+	Performance Monitor (perfmon.exe): This tool allows us to view performance data from a
+	log file or live. This is useful to troubleshoot performance issues in a computer, either
+	local or remote.
+
+	Device Manger: is used to configure any devices that are attached to the computer, like
+	disabling hardware attached to your machine.
+
+2. Storage: Storage is where you can find Windows Server back up and Disk Management.
+	In Disk Management, you can perform advanced configuration on drives such as: set up a new
+	drive, create a partition and extend it, shrink a partition, assign or change drive letter.
+
+3. Services and Applications: Here you can also see services and do more than just enable or disable
+	them, you can view their properties as well. Another tool here is WMI Control which allows
+	scripting languages to manage Windows personal computers or servers locally and remotely.
+	WMIC is its command line interphase which is DEPRECATED.
 
