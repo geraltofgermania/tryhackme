@@ -106,3 +106,13 @@ System summary (displays general technical info about the computer)is composed o
 	
 	Back to msinfo32. There is a search bar near the bottom of this tool, use it to find components.
 
+Resource Monitor/resmon
+
+Resource Monitor is a tool that allows you to see per process and aggregate data of CPU, memory, disk, and network usage
+information as well as providing details of which files are being used by processes and applications. Advance filtering
+allows of the isolation of data and visualization of conflicts, users can start, stop, pause, and resume services in
+order to attemp to resolve conflicts. 
+
+The Overview section of the app includes: CPU, Memory, Disk, and Network. All of which have their individual tabs.
+
+
