@@ -115,4 +115,44 @@ order to attemp to resolve conflicts.
 
 The Overview section of the app includes: CPU, Memory, Disk, and Network. All of which have their individual tabs.
 
+Command Prompt/cmd
+
+The command line was the only way that users interacted with computers back in the origins of computing. The command
+line still remains a very useful tool however and much can be accomplished from it.
+
+Here we will explore a few commands that can tell us some information about the windows system.
+
+	hostname: outputs the computer name
+
+	whoami: shows the username of the logged in user
+
+	ipconfig: displays the network configuration of the computer
+
+	'/?': when used as a suffix returns the man page of a command for example 'ipconfig /?'
+
+	cls: clears the terminal
+
+	netstat: displays the current TCP/IP connections and their status.
+
+	net: This command is used for network configuration. '/?' does not work for this command, you would use its
+	subscommand 'help'. In order to see the help page for net subcommands use net help <subcommand> example:
+	net help user
+
+Registry Editor/regedt32
+
+The Windows Registry is a central hierarchical database used to store information necessary to configure the system
+for one or more users, applications, and hardware devices. The Registry contains information that Windows continually
+references during operation such as:
+
+Profiles for each user
+Applications installed on the computer and the types of documents that each can create
+Property sheet settings for folders and application icons
+What hardware exists on the system
+The ports being used
+
+The Registry Editor is considered to be for advanced users as editing settings here can affect the functioning of the
+computer.
+
+Documentation on the editor:
+https://docs.microsoft.com/en-us/troubleshoot/windows-server/performance/windows-registry-advanced-users
 
