@@ -62,4 +62,38 @@ https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-fire
 
 App & browser control
 
+In App and Browser control you can change settings that protect against phishing and dangerous files and websites.
+Divided in two main sections:
 
+	Check apps and files: protects your device by checking unrecognized apps and files from the web.
+
+	Exploit protection: This is built in to Windows and its default settings work for most people. Here you can find
+	settings such as Control Flow Guard, Data Execution Prevention, and others.
+
+Unless you are familiar with these settings it is best not to change them.
+
+Device Security
+
+Contains settings involving core isolation, high security processes, and details of the Trusted platform module (TPM).
+
+	Core Isolation: Virtualization-based security measures that protect core parts of your device.
+		Memory Integrity: prevents attacks from inserting code into high security processes.
+	
+	Security Processor: called the Trusted Platform Module is a cryptoprocessor that adds a physical layer of encryption to the device by
+	performing cryptographic tasks and anti-tampering features.
+
+Bitlocker
+
+Bitlocker Drive Encryption is a data protection feature that addresses the concern of data loss or theft from stolen, lost, or inappropiately 
+decommissioned computers. It is integrated with Windows.
+
+Bitlocker Drive Encryption works best with computers with a Trusted Module Platform version 1.2 or newer installed. They work together
+to provide protection of data and ensure tampering did not occur while the system was offline.
+
+More on Bitlocker:
+https://docs.microsoft.com/en-us/windows/security/information-protection/bitlocker/bitlocker-overview
+
+Volume Shadow Copies
+
+These simply are restore points that can be created from advanced system settings if system protection is on. These files allow you to revert
+to a snapshot of the system from a previous point in time if something were to go wrong.
