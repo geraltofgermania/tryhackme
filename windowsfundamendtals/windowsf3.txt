@@ -1,0 +1,65 @@
+In this file we talk about some of the security measures Windows implemets.
+
+Windows Update
+
+Windows update is found in Settings, it can also be opened with control /name Microsoft.WindowsUpdate
+
+Updates are typically rolled out the second Tuesday of each month (expect for critical updates) on what's
+called Patch Tuesday. Starting on Windows 10, updates are required and while they can be delayed, they will
+take place alongside the required reboot.
+
+Windows Security
+
+Available in Setting. Per Microsoft: Windows Security is your home to manage tools that protect your device
+and your data.
+
+There are 4 protection areas:
+	Virus & threat protection
+	Firewall & network protection
+	App & browser control
+	Device Security
+
+The aforementioned areas have status icons to indicate if your attention is needed:
+	Green: your attention is not needed
+	Yellow: means that there are safety recommendations for you to see
+	Red: your immediate attention is needed
+
+Virus & threat protection
+
+Virus & threat protection is divided in two parts:
+	Current threats:
+		Scan Options:
+			Quick Scan: scans the folders in the system where threats are usually found
+			Full Scan: Checks all files and running programs on the hard drive. This can take very long.
+			Custom Scan: Choose which files and locations you want to check.
+		Threat History:
+			Last Scan: Windows Defender Antivirus scan your computer automatically to keep it safe.
+			Quarantined Threats: Threats have been isolated and prevented from running on the device.
+			They will be removed periodically.
+			Allowed Threats: Allowed threats are items identified as threats which you have allowed to run
+			on your device. Only do this if you are 100 percent sure of what you are doing.
+
+	Virus & threat protection settings:
+		Here you can find a plethora of settings such as real-time protection, cloud delivered protection,
+		notifications, etc...
+
+Firewall & network protection
+
+Firewall provides three profile: Domain, Private, and Public
+	Domain Network: This profile applies to networks where the host system can authenticate to a domain controller
+	Private Network: This profile is a user-assigned profile and is used to designate private networks or home networks
+	Public Network: This profile is the default profile, used to designate public networks such as wifi hotspots at
+	airports or coffee shops.
+
+When you click on any of the firewall profiles you will see two options: turn on/off and Block all incoming
+connections. It is recommended to leave your firewall enabled.
+
+You can allow apps to have access to the network in the public/private profiles in the settings.
+To open the advanced settings for the firewall go in Control Panel or use the command 'WF.msc'
+
+Refer to the WF.msc documentation here:
+https://docs.microsoft.com/en-us/windows/security/threat-protection/windows-firewall/best-practices-configuring
+
+App & browser control
+
+
