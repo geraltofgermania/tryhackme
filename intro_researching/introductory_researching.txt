@@ -16,4 +16,16 @@ NOTE: steghide is a tool for linux which allows us to hide and extract hidden fi
 
 Vulnerability Searching
 
+When hacking, you'll come across software that can be exploited such as content management systems like
+Ghost, Fuel CMS, Wordpress... In order to find exploits that already exitst in these services you can
+consult sites such as:
 
+	ExploitDB (searchsploit CLI): this site can be very useful because it often contains exploits
+	that can be downloaded straight from the site and used.
+	National Vulnerability Database NVD: Keeps record of CVEs whether or not there is an exploit
+	publicly available.
+	CVE Mitre (Common vulnerability and exposures)
+
+Common vulnerabilites and exposures are titled in the following format: CVE-Year-IDnumner.
+The year of the CVE is not when it is published, rather it is when it was discovered, so you could find
+a CVE with the year 2019 that was released in 2020.
