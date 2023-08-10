@@ -29,3 +29,5 @@ consult sites such as:
 Common vulnerabilites and exposures are titled in the following format: CVE-Year-IDnumner.
 The year of the CVE is not when it is published, rather it is when it was discovered, so you could find
 a CVE with the year 2019 that was released in 2020.
+
+Manual Pages
