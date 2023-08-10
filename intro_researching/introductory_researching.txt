@@ -1,0 +1,19 @@
+Introduction to Researching
+
+Researching is the most important skill a hacker can have since the knowledge base of the field
+is massive. You can always expect to run into something you don't know and have to look up, regardless
+of experience level. The ability to look something up and understand it is the most important
+aspect to master.
+
+Example Research Question
+
+In this portion of Intro to Reasearching the question involved steganography, a technique involving
+hiding files in other files. In order to get an understanding of what this is we must start reaseaching.
+We can do this with a simple google search and from there continue to look for more answers through
+searching and querying as needed.
+
+NOTE: steghide is a tool for linux which allows us to hide and extract hidden files from other files.
+
+Vulnerability Searching
+
+
