@@ -31,3 +31,11 @@ The year of the CVE is not when it is published, rather it is when it was discov
 a CVE with the year 2019 that was released in 2020.
 
 Manual Pages/man pages
+
+You can access the built in manual pages in the terminal using the man command as such 'man <command>'
+Rarely does a tool not have a man page, and this should be your first stop when you don't know how to use
+a tool.
+
+Man pages contain all sorts of userful information such as command syntax, flags, etc.
+
+
