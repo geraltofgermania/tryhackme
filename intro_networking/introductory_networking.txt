@@ -1,0 +1,46 @@
+Introductory Networking
+	The OSI Model
+	The TCP/IP Model
+	How these models look in practice
+	Basic Networking Tools introduction
+
+The Open Systems Interconnection Model/OSI model
+
+The OSI model is an standarized model which we use to demonstrate the theory
+behind networking. In reality the TCP/IP model is used for networking, however,
+the OSI model is easier to get an initial understanding.
+
+7 Layers of the OSI model:
+	Application
+	Presentation
+	Session
+	Transport
+	Network
+	Data Link
+	Physical
+
+7. Application: this layer essentially provides networking options to programs
+running on a computer through an interface for them to use in order to transmit 
+data. When data passes through the application layer, it goes into the presentation
+layer.
+
+The application layer is not an application, instead it is a component withing
+an application that control the communication method to other devices.
+
+6. Presentation: Receives data from the application layer. Standarized the data
+so that the receiving device is capable of understanding it. This layer formats
+data into an standard format, handles any encryption, compression, or other
+transformations necessary. Once done, data passes to the session layer. 
+
+5. Session: Once data has been formatted and passed down to the session layer,
+the session layer looks to see if it can set up a session with another computer
+across the network, if it can't, then it returns an error and the process stops.
+If it can, the session is established, and maintained by this layer. The session
+layer works with the session layer of the receiving computer in order to synchronize
+communications. The session layer is important because this session is unique
+to the communication in question, this is how you can have two YouTube videos
+playing at once in different tabs. When the session is properly established data
+passes down to the transport layer.
+
+4. Transport:
+
