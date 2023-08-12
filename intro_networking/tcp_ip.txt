@@ -1,0 +1,53 @@
+The TCP/IP Protocol
+
+The TCP/IP protocol is similar to the OSI model in many ways. It's older and serves as the
+basis for real-world networking. This model has 4 layers which together cover the functionality
+of the 7 layers of the OSI model.
+
+	4. Application
+	3. Transport
+	2. Internet
+	1. Network Interface
+
+NOTE: Some sources list the TCP/IP model has having 5 layers, splitting network interface
+into Data Link and and Physical layers as with the OSI model; this is well known, however,
+not official. It is up to you to choose which version to use.
+
+The TCP/IP model maps the OSI model more or less like this:
+	4. Application: Application, Presentation, Session
+
+        3. Transport: Transport
+
+        2. Internet: Network
+
+        1. Network Interface: Data Link, Physical
+
+The processes of encapsulation and de-encapsulation work in the same way as in the OSI model.
+With each layer headers are added or removed.
+
+***The Practical Side of Things...
+
+When we talk about TCP/IP model, what we are actually talking about is a set of rules that
+defines how an action is to be carried out, that is protocols. The TCP/IP model takes its
+name from the two most important protocols that (among others) make up the TCP/IP suite:
+Transmission Control Protocol (controls the flow of data between two endpoints) and Internet
+Protocol (controls the addressing of packages)
+
+Let's explore TCP a bit, since it is a connection based protocol it must first establish a
+connection via process knows as the 3 Way Handshake:
+
+1. The client sends the SYN (synchronize) request to the server
+2. The server responds with a SYN packet of its own and an ACK (acknowledgement) packet
+3. The client sends a single ACK packet establishing the connection
+
+After the 3 Way Handshake has been completed data can begin transmission, any data lost or
+corrupted is resent, creating a connection which appears to be lossless.
+
+NOTE: there is more than this to TCP, just know for now that a 3 Way Handshake must occur before
+data is sent over TCP.
+
+History: The DoD introduced the TCP/IP model in order to standarize networking in 1982 because
+before this, systems made by different manufacturers were completely incompatible. The OSI
+model was introduced by the International Organization for Standarization ISO, however, it
+is used mostly as a comprehensive guide for studying as TCP/IP is still used for modern
+networking.
