@@ -1,0 +1,26 @@
+Encapsulation
+
+As data passes down each layer of the OSI model more data is added to the start of the
+transmission, for example, the Network layer would add headers which include source and
+destination IP addresses, then when data passes to the Transport layer headers related
+to the transmission protocol are added. The Data Link layer also adds a piece of information
+at the end of the transmission which is used for checking for data loss or corruption. This trailing
+piece of information adds a layer of security as data cannot be tampered with without
+interrupting the chain. This process is referred to as encapsulation the process by which
+data can be sent from one computer to another. 
+
+See the image in this folder for a visual representation of this process.
+
+Data is referred to as different things throughout this process, in layers 7, 6, 5 data
+is simply called data. In layer 4, it then becomes datagrams or segments depending on
+whether UDP or TCP was selected as the transmission protocol. Then, in layer 3 data is
+referred to as packets. Packets get passed down to layer 2, Data Link, where they become
+frames. And finally in layer 1, the physical layer, they are broken down into bits.
+
+The receiving computer reverses this process. Starting at the physical layer all the way
+up to application, stripping the added data as it goes in the process of de-encapsulation.
+
+The processes of encapsulation and de-encapsulation are important because they provide
+a standard methodology of sharing data between computers regardless of manufacturer, OS,
+etc.
+
