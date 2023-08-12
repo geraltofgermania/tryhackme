@@ -42,5 +42,44 @@ to the communication in question, this is how you can have two YouTube videos
 playing at once in different tabs. When the session is properly established data
 passes down to the transport layer.
 
-4. Transport:
+4. Transport: This layer has several functions but one of the most important is to 
+select over which protocol data is to be transmitted. The two most common protocols
+are TCP and UDP. Transmission control protocol is connection based meaning that a
+connection between the two computers is established and maintained for the duration
+of the request. This allows for reliable transmission as the connection can be used
+to check that all packets get to the right place. TCP connection allows the two computers
+to remain in constant communication to ensure data is sent at an acceptable speed
+and that any lost data is resent. User datagram protocol doesn't have the checks that
+TCP has, it "throws" the packets at the receiving computer and the state of the
+connection is ignored, there are no consequences for lost data exept for the user
+experience. TCP is used in which reliability is important ex. file transfer, and UDP
+is used where speed matters most ex. video streaming where if a few packets get lost
+the only consequence is pixelated frames.
 
+With the protocol selected, the network layer divides the data into bite-sized pieces
+called segments in TCP and datagrams in UDP.
+
+3. Network: The network layer is in charge of locating the destination of your request.
+The internet is a huge network, when you request a website, the network layer takes
+the IP address of the page and figures out the best route. At this stage we are still
+working with Logical addressing, that is IP addresses, which are software controlled.
+IP addresses provide order to networks, categorizing them and allowing us to sort them.
+Currently the most popular format is IPv4 which is the common IP address format ex.
+192.168.1.1
+
+2. Data Link: Focuses on the physical addressing of the transmission. This layer receives 
+a packet from the network layer that contains the IP address of the remote computer and 
+adds the Media Access Control address which is the physical address of the Network Interface
+Card in every computer that is network enabled. The MAC address is used to identify the
+NIC, they are set by the manufacturer and cannot be changed, but can be spoofed. When
+information is sent over the network it's the physical address that is used to identify
+where exactly to send it.
+
+It is also the job of the Data link layer to present data in a suitable format for trans-
+mission.
+Also, it checks whether data has been corrupted during transmission. Data is transmitted
+by layer 1, the Physical layer.
+
+1. Physical Layer: This is the hardware of the computer. The binary data is converted into
+electrical pulses sent over a network. And also convert the electrical signals received
+back into binary data for interpretation.
