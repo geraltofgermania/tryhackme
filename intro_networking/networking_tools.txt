@@ -1,0 +1,70 @@
+Networking Tools
+
+This file contains a brief description of some networking tools that will prove useful in
+our journey.
+
+Ping
+
+Ping is a very useful tool included out of the box in most OS's, it tests whether a connection
+to a remote resource is possible. It operates on the Network layer of the OSI model and
+the Internet layer of TCP/IP. It uses the ICMP protocol.
+
+Basic syntax
+	>>> ping <target>
+
+Traceroute
+
+Traceroute is a tool that allows you to map every step that your request takes to get to
+the desired resources. The internet contains many servers networked to each other, and
+it takes several intermediate steps to actually get to where you want to. Traceroute
+shows you these steps. Traceroute operates using UDP on Unix-like OS's, this can be changed
+with switches however.
+
+Basic syntax:
+	>>> traceroute <target>
+
+NOTE: this tool is called 'tracert' on Windows, it operates using ICMP like ping.
+
+WHOIS
+
+Whois is a tool that allows you to search a domain's information such as IP address
+and regristration details. Essentially domains (ex. google.com) translate into IP
+addresses so that we don't have to remember a bunch of numbers every time we want to visit
+a website. Whois gives you this address and more.
+
+Basic syntax:
+	>>> whois <target>
+
+Dig
+
+Before we get into dig let's recap on DNS
+
+When you request a domain, there are several steps that go into translating the domain name
+into an IP address:
+
+	-Your computer checks its local cache to see if there it is stored there.
+	-The request goes to the Recursive DNS server provided by your ISP whose details
+	are stored in the router.
+	-If the IP wasn't found in the previous step then the request is redirected to a
+	root name server whose job is to keep track of domains that are next level down, that
+	is Top Level Domain servers (.com .org etc.)
+	-Then you are redirected to a TLD server that keeps track of the top level domain 
+	requested such as .com.
+	-The TLD server redirects you to the the Authoritative Name server, these store
+	DNS records for domains directly, every domain has its information registered on an
+	Authoritative Name server somewhere. They are the source of the information.
+	-The information from the Authoritative name server is routed back to you.
+
+All these steps happen automatically when you use a browser but you can do it manually with Dig.
+
+Dig allows us to query recursive DNS servers of our choice for infomation about a domain. Dig is
+an useful tool for network troubleshooting.
+
+Basic syntax:
+	>>>dig <@dns server ip> <target domain> <query type>
+Example:
+	>>>dig @8.8.8.8 google.com
+
+Dig returns a lot of information, for now focus on the answer section which returns the desired
+answer. Mainly IP address is what we are looking for. You can also see the TTL of the DNS record
+that is now cashed in seconds.
