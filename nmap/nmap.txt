@@ -1,0 +1,29 @@
+Nmap - A Powerful Scanning Tool
+
+Introduction
+
+When we are given a target IP/s to perform a security audit on, the first step we must do is enumerate before attempting to exploit.
+In order to get a map of the target, we perform a port scan, this will help us determine what services are running on the target, such as
+a web server of a Windows Active Directory Domain Controller. Ports are a networking contruct that is necessary in order to make multiple
+requests or have multiple services available. For example, when you load multiple pages at once in a browser, the program needs a way to
+know which tab is which page. This is done by establishing connections with the remote servers using different ports of your local machine.
+Equally, if you want to run different services on your server, like https and http version of the same site, you need a way to direct the
+traffic. Again, this is done by running the services on different ports of the server.
+Network connections are made between two ports, an open port listening on the server and a randomly selected port on your machine. Like
+Port 443 of a web server and port 65235 on your computer.
+
+Ports available: 65535 ports
+Standard Ports
+Port 80: http
+Port 443: https
+Port 139: Windows Netbios
+Port 445: SMB
+
+These standard ports could be changed in configuration, so it is imperative to perform an scan when enumerating the target.
+
+If we don't know what ports are open on the target, it is almost imposible to succeed in exploiting it. This is how nmap can help us, it
+connects to every port and based on how it responds it is determined whether the port is open, closed, or filtered (firewall). Then we
+can enumerate the service running on the open ports, usually through nmap as well. Nmap is currently the industry standard tool due to its
+functionallity and reliability, which include its scripting engine which sometimes even allows to perform exploits through it.
+
+Nmap Switches
