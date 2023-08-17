@@ -36,4 +36,18 @@ Take good time to read the man page of nmap as it is well written and has lots o
 
 Scan Types: Overview
 
+When port scanning there are three basic scan types:
+
+-sT: TCP connect scans
+-sS: SYN "half-open" scans
+-sU: UDP scans
+
+Additionally there are several less common scan types:
+
+-sN: null TCP scans
+-sX: Xmax TCP scans
+-sF: FIN Scans
+
+
+TCP Connect Scans / -sT
 
