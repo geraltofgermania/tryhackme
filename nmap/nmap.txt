@@ -51,3 +51,28 @@ Additionally there are several less common scan types:
 
 TCP Connect Scans / -sT
 
+The TCP connect scan uses the TCP three way handshake to work, that is, it used the SYN packet with every port on the target
+and based on the response, it determines whether the port is open or not. If a port is closed, upon receiving our SYN request
+it would reply with a RST (reset) flag and this ignoring the connection, if the port is open it would reply with a segment
+containing the SYN/ACK flags, and nmap would complete the handshare by replying with the ACK flag, nmap would then mark this
+port as open. 
+
+If port is closed:
+	Client		Target
+	SYN ----------->
+	   <-----------RST
+
+If port is open:
+	Client		Target
+	SYN------------->
+	  <-------------SYN/ACK
+	ACk------------>
+
+This is all correct but there is another scenario which is the Firewall. If nmap sends the TCP SYN request and get nothing
+back this most likely means that the port is being walled by a firewall. This makes the port Filtered.
+
+It is also possible to configure a firewall to respond with the TCP RST packet, making it extremely difficult to get a good
+idea of the target. Here is an example of how to configure IPtables on Linux to respond with the RST flag:
+	>>> iptables -I INPUT -p tcp --dport <port> -j REJECT --reject-with tcp-reset
+
+
