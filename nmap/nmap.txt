@@ -27,3 +27,13 @@ can enumerate the service running on the open ports, usually through nmap as wel
 functionallity and reliability, which include its scripting engine which sometimes even allows to perform exploits through it.
 
 Nmap Switches
+
+Switches are arguments that tell the program what to do. In order to see the switches for nmap consult the man page.
+There are many different types of scans and script-scans that nmap can perform. This will depend on the situation at hand. Pick the one that
+best suits your current setting.
+
+Take good time to read the man page of nmap as it is well written and has lots of useful information.
+
+Scan Types: Overview
+
+
