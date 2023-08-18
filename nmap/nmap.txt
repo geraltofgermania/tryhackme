@@ -66,7 +66,7 @@ If port is open:
 	Client		Target
 	SYN------------->
 	  <-------------SYN/ACK
-	ACk------------>
+	ACK------------>
 
 This is all correct but there is another scenario which is the Firewall. If nmap sends the TCP SYN request and get nothing
 back this most likely means that the port is being walled by a firewall. This makes the port Filtered.
@@ -74,5 +74,64 @@ back this most likely means that the port is being walled by a firewall. This ma
 It is also possible to configure a firewall to respond with the TCP RST packet, making it extremely difficult to get a good
 idea of the target. Here is an example of how to configure IPtables on Linux to respond with the RST flag:
 	>>> iptables -I INPUT -p tcp --dport <port> -j REJECT --reject-with tcp-reset
+
+SYN Scans / -sS
+
+As with TCP scans SYN scans are used to scan the TCP port range of a target; however, the two scans work slightly different.
+-sS scans are somtimes referred to as a half-open scan or stealth scan.
+
+Where TCP scans complete the Three Way Handshake as seen above, the SYN scan sends an RST packet upon receiving the SYN/ACK from
+the target thus avoiding the target repeatedly making requests.
+
+        Client          Target
+        SYN------------->
+          <-------------SYN/ACK
+        RST------------>
+
+Here are some advantages of this scan type:
+	1. They can be used to bypass older IDS as they are looking for a full 3-way Handshake.
+	2. SYN scans are often not logged by applications running on open ports since connections are often logged once they
+	have been established. This plays into the idea of a SYN scan being stealthy.
+	3. Since SYN scans do not complete the 3-Way Handshake, they are significantly faster.
+
+However, some disadvantages do exist:
+	1. They require Sudo permitions in order to work correctly in Linux since SYN scans need the ability to generate raw
+	packets (as opposed to the full TCP handshake), and this is a privilege that only root has by default.
+	2. Unstable services can sometimes be brought down by SYN scans which can be problematic when working for a client's
+	production environment. (NOTE: this can be useful as an attack if you know the target is unstable)
+
+The pro's outweigh the con's, and because of this, when nmap is run by sudo the SYN scan is default. If not run as sudo, nmap
+defaults to a TCP scan.
+
+When using SYN scan to identify closed or filtered ports, the same rules apply as for a TCP connect scan. If the port is
+closed the server responds with the RST TCP packet, and if filtered the SYN request is dropped by the firewall or spoofed with
+a RST TCP flag. In this regard both scans are the same, they are different in how open ports are handled.
+
+UDP Scan / -sU
+
+UDP, unlike TCP, is stateless that is, rather than initiating a connection with a back and forth handshake, it relies on
+sending packet to the target port and hoping that they make it. This makes UDP useful for connections that rely on speed rather
+than quality like video streaming. The lack of acknowlegment in UDP however makes scanning slow and more difficult.
+
+When a packet is sent to and UDP port, no response is expected. If nmap receives no response, then the port could be open
+or filtered (by a firewall). If nmap receives a UDP response (very rare) then the port is marked as open. But like it was said before
+most likely there won't be response. After receiving no response, nmap sends a second request to double-check, if there is
+no response the port is marked as open|filtered, and nmap moves on. 
+
+When a UDP port is closed, howeverm, the targer sends back an ICMP package stating that the port is unreachable and nmap
+marks it as closed and moves on. This clearly identifies closed ports.
+
+Due to -sU uncertainty of whether a port is open or filtered, it takes very long to complete a scan, about 20 for just the
+first 1000 ports with a good connection. So when we use -sU, it's a good idea to use the option:
+	--top-ports <number>
+As such:
+	>>>sudo nmap -sU --top-ports 20
+This will only scan the top 20 most commonly used UDP ports, resulting in a more acceptable scan time.
+
+When scanning UDP ports nmap will usually send completely empty UDP datagrams, just raw UDP packets. However, when scanning
+ports for well-known UDP services it will send a more protocol specific payload which is more likely to provoke a response from
+which a more accurate result can be drawn.
+
+TCP Null Scans / -sN
 
 
