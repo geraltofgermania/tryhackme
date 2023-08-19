@@ -134,4 +134,30 @@ which a more accurate result can be drawn.
 
 TCP Null Scans / -sN
 
+Tends to be stealthier than a SYN scan. In this scan, nmap sends a completely empty request. If the port if closed, the target
+responds with a RST flag.
+
+TCP FIN Scan / -sF
+
+Like the scan before, this one tends to be stealthy. It sends a FIN request to the targer, if the port is closed the target
+should respond with a RST flag.
+
+TCP Xmax Scan / -sX 
+
+This scan sends a malformed TCP packet and expects a RST flag for closed ports. It is referred to as an Xmax scan because the flags
+it sets make it look like a Christmast tree in a wireshark packet capture.
+
+The expected response for these three scans is identical, and very similar to UDP scans, that is no response is expected. Unfortunately,
+as with UDP, this is the expected response when a port is protected for a firewall, so these scans will only mark ports as open|filtered,
+closed, or filtered. If a port is marked as filtered with one of these scans it's usually because the target reponded with an
+ICMP unreachable packet.
+
+Even though RFC 793 mandates no response to malformed packets for open ports and RST response for closed ports, this is not always
+the case.Many Microsoft Windows and Cisco devices often respond to malformed packets with the RST flag. This results in all ports
+showing up as closed. 
+
+That being said the purpose of these scans, with 'malformed' packets is firewall evation. Many firewalls are configured to drop packets
+with the SYN flagset, thus eliminating new connections. By sending packets that lack the SYN flag, we can bypass this firewall type.
+While this is the case in theory, many of the new IDS are savvy to this method and are configured to detect it.
+
 
