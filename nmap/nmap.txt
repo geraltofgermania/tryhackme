@@ -145,7 +145,8 @@ should respond with a RST flag.
 TCP Xmas Scan / -sX 
 
 This scan sends a malformed TCP packet and expects a RST flag for closed ports. It is referred to as an Xmas scan because the flags
-it sets make it look like a Christmast tree in a wireshark packet capture.
+it sets make it look like a Christmast tree in a wireshark packet capture. It uses the URG, PSH, and FIN flags (Urgernt, Push, Finalize
+respectively)
 
 The expected response for these three scans is identical, and very similar to UDP scans, that is no response is expected. Unfortunately,
 as with UDP, this is the expected response when a port is protected for a firewall, so these scans will only mark ports as open|filtered,
