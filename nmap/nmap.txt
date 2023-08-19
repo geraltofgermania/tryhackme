@@ -142,9 +142,9 @@ TCP FIN Scan / -sF
 Like the scan before, this one tends to be stealthy. It sends a FIN request to the targer, if the port is closed the target
 should respond with a RST flag.
 
-TCP Xmax Scan / -sX 
+TCP Xmas Scan / -sX 
 
-This scan sends a malformed TCP packet and expects a RST flag for closed ports. It is referred to as an Xmax scan because the flags
+This scan sends a malformed TCP packet and expects a RST flag for closed ports. It is referred to as an Xmas scan because the flags
 it sets make it look like a Christmast tree in a wireshark packet capture.
 
 The expected response for these three scans is identical, and very similar to UDP scans, that is no response is expected. Unfortunately,
