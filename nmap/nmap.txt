@@ -161,4 +161,13 @@ That being said the purpose of these scans, with 'malformed' packets is firewall
 with the SYN flagset, thus eliminating new connections. By sending packets that lack the SYN flag, we can bypass this firewall type.
 While this is the case in theory, many of the new IDS are savvy to this method and are configured to detect it.
 
+ICMP Network Scanning
+
+The first thing we gotta do when we connect to a target network is find out which IP addresses contain hosts, in other works map
+out the network.
+
+One way to do this is to perform a Ping Sweep using nmap. Basically, nmap sends an ICMP packet to every possible IP address for a
+specified network. When it receives a response it marks the IP address as being alive. For reasons we'll see later, this is not
+always accurate, but it provides a good baseline and is worth covering.
+
 
