@@ -161,13 +161,24 @@ That being said the purpose of these scans, with 'malformed' packets is firewall
 with the SYN flagset, thus eliminating new connections. By sending packets that lack the SYN flag, we can bypass this firewall type.
 While this is the case in theory, many of the new IDS are savvy to this method and are configured to detect it.
 
-ICMP Network Scanning
+ICMP Network Scanning / -sn
 
-The first thing we gotta do when we connect to a target network is find out which IP addresses contain hosts, in other works map
+The first thing we gotta do when we connect to a target network is find out which IP addresses contain hosts, in other words map
 out the network.
 
 One way to do this is to perform a Ping Sweep using nmap. Basically, nmap sends an ICMP packet to every possible IP address for a
 specified network. When it receives a response it marks the IP address as being alive. For reasons we'll see later, this is not
 always accurate, but it provides a good baseline and is worth covering.
 
+We can perform the IP sweep using the flag -sn, and specifying the range of IP we want to check either using a hyphen or CIRD notation
+respectively:
 
+	>>> nmap -sn 192.168.0.1-254
+or
+	>>> nmap -sn 192.168.0.0/24
+
+The -sn switch simply disables port scanning forcing nmap to use ICMP echo packets (or Address Resolution Protocol requests on a local
+network if run as root) to identify targets. -sn will also force nmap to send a TCP SYN to port 443 and a TCP ACK to port 80 (TCP SYN
+if not run as root) of the target.
+
+CIRD notation's number after the slash is the total number of consecutive '1' bits from left to right.
