@@ -1,0 +1,43 @@
+Nmap Scripting Engine (NSE) - Overview
+
+The Nmap Scripting Engine or NSE for short is an incredibly powerfull addition to nmap, extending its functionallity condierably.
+NSE scripts are written in the Lua programming language and can be used for variety of things: from scanning vulnerabilities to
+executing exploits for them. NSE is particularly good for recon, but keep in mind how extensive the script library is.
+
+There are many script categories, some of them include:
+	-safe: won't affect the target
+	-intrusive: not safe, likely to affect the target
+	-vuln: scan for vulnerabilites
+	-exploit: attempt to exploit a vulnerability
+	-auth: attempt to bypass authentication for running services
+	-brute: attempt to bruteforce credentials for running services
+	-discovery: attempt to query running services for further information about networking
+	NOTE: a more complete list can be found here https://nmap.org/book/nse-usage.html
+
+Working with the NSE 
+
+Just as seen before in or order to use NSE you use the command:
+	>>> nmap --script <script name>
+or
+	>>> nmap --script=<script name>
+
+In the same fashion we can give nmap a comma separated list of scripts:
+	>>> nmap --script smb-enum-users,smb-enum-shares
+
+Some scripts require arguments to be passed to them in order to work well, to do this we use the --script-args switch.
+	>>> nmap --script <script name> --script-args <argument>,<argument>
+An good example for --script-args is the http-put script that is used for uploading files with the http PUT method to a URL.
+http-put takes two argumets: the target URL and the location of the file to upload.
+	>>> nmap -p 80 --script http-put --script-args http-put.url='/dev/shell.php',http-put.file='./shell.php'
+
+Note that the argumets are separated by commas with no spaces, and connected to their respective script with a dot.
+	>>> --script-args <script name>.<script argument>
+
+NOTE: A full link of scripts and their corresponding arguments can be found here: https://nmap.org/nsedoc/
+
+If you need some help using a script nmap provides a help page for an individual script using the command:
+	>>> nmap --script-help <script name>
+
+Searching for Scripts
+
+
