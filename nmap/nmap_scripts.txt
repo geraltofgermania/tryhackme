@@ -33,11 +33,37 @@ http-put takes two argumets: the target URL and the location of the file to uplo
 Note that the argumets are separated by commas with no spaces, and connected to their respective script with a dot.
 	>>> --script-args <script name>.<script argument>
 
-NOTE: A full link of scripts and their corresponding arguments can be found here: https://nmap.org/nsedoc/
+NOTE: A full list of scripts and their corresponding arguments can be found here: https://nmap.org/nsedoc/
 
 If you need some help using a script nmap provides a help page for an individual script using the command:
 	>>> nmap --script-help <script name>
 
 Searching for Scripts
 
+Now that we know how to use scripts we need to know how to find them. There are two ways to do this which should be used
+in conjunction. The first one is using the link provided above and the second one is by looking at the scripts in your local
+storage. For Linux this is at:
+	/usr/share/nmap/scripts
+
+In addition there are two ways to search for installed scripts. One is to look at the file /usr/share/nmap/scripts/script.db.
+This file is an indexed text file which contain a list of the installed NSE scripts.
+
+Nmap uses the aforementioned file to access and keep track of the scripts for NSE, you can also use grep on this file in
+order to find what you are looking for.
+	>>> grep 'ftp'/usr/share/nmap/scripts/script.db
+This will output the lines with 'ftp' in them. Remember you can use grep with script names and categories.
+
+Another way is to use the command ls as such:
+	>>> ls -l /usr/share/nmap/scripts/*ftp*
+	NOTE: the asteriscs are wildcards that will return every file containing 'ftp' in the name regardless of what came
+	before or is after.
+
+Now what if we check the website and we are missing some scripts? Well you can usually fix this simple running
+	>>> sudo apt update && sudo apt install nmap -y
+but it can also be done manually using wget download tool
+	>>> wget -O /usr/share/nmap/scripts/<script name>.nse https://svn.nmap.org/nmap/scripts/<script-name>.nse
+	NOTE: -O is the output file
+Then you have to run the command that updates script.db so that nmap can access the script:
+	>>> nmap --script-updatedb
+NOTE: If you know Lua you can add your own scripts to this directory and update the db file as seen above!
 
