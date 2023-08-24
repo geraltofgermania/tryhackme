@@ -67,3 +67,30 @@ Then you have to run the command that updates script.db so that nmap can access 
 	>>> nmap --script-updatedb
 NOTE: If you know Lua you can add your own scripts to this directory and update the db file as seen above!
 
+Firewall Avoidance
+
+There is a common firewall configuration which is imperative that we know how to bypass. You typical Windows Host will have by
+default the configuration to drop all ICMP packets, causing nmap to mark the host as not active or have you believe the host is
+dead after performing a ping request. 
+
+Thankfully nmap allows you to perform scans as if the host is alive, that is, skipping the ping before the scan. For this we use
+the switch -Pn, which tells nmap to perform the scan without pinging.
+	>>> nmap -Pn 192.168.0.2
+Now there is a disadvantage to this, if the host is actually dead it will take nmap a long while to finish becuase it will still
+attempt to check and double check each port specified.
+
+NOTE: if you are already directly on the local network, nmap is also able to use ARP requests to determine host activity.
+
+NOTE: Useful firewall evasion switches https://nmap.org/book/man-bypass-firewalls-ids.html
+
+Here are some particularly useful ones.
+
+	-f: splits packets into smaller pieces making them less likely to be dropped by a firewall.
+	--mtu <number>: an alternative to -f, but you can specify the maximum unit size for the packets sent. This value must be a
+	multiple of 8.
+	--scan-delay <time>ms: used to add a delay between packets sent. Very useful when a network is unstable or avoiding
+	triggering time-based firewalls or IDS.
+	--badsum: generates an invalid checksum for packets, any real TCP/IP stack would drop this packet, however, a firewall
+	may potentially respond automatically without checking the checksum of the packet confirming the presence of a firewall/
+	IDS.
+
