@@ -49,4 +49,36 @@ Here are some common switches:
 
 -a             all of the above (full basic enumeration)
 
+Exploiting SMB
+
+There are exploits that allow you to run remote execution by exploiting SMB, do your research if you believe you need to know these. However, in
+many situations you'll find that the best way to hack into a SMB server is by exploiting a misconfiguration. In this case we'll be seeing the
+anonyous SMB share access - a common misconfiguration that can allow us to gain information that will lead us to a shell.
+
+From our enumeration stage we know an interesting share and it's location:
+
+//<ip address>/profiles
+
+In order to access an SMB share we can use the tool SMBClient, this tool is part of the Samba suit in Linux. Although it can be installed if it not
+present.
+
+We can use SMBClient like this:
+	>>> smbclient //<ip>/<share> -U <user> -p <port>
+
+The first thing we'd want to try is check whether this share accepts anonymous users by using the username "Anonymous" and not supplying a password.
+
+In this case it does, when we take a peak around the directory we find the file:
+	>>> more "Working From Home Information.txt"
+
+The output gives a full name. And the information that this person's account has ssh access to the server. We also find the directory .ssh which
+contains his id_rsa file. We download this file, then change it's permissions with chmod, and then use ssh and the id file to login to the ssh server.
+
+	>>> mget id_rsa (mget = mirror get, meaning it is used to download a file to the current working directory of our local machine for the remote one)
+	>>> sudo chmod 600 id_rsa
+	>>> sudo ssh -i id_rsa Cactus@<ip address>
+
+NOTE: the command "more" is similar to "cat" in SMB protocol servers.
+      mget downloads a file to the cwd
+      when using an id_rsa file, use sudo to avoid permission errors when ssh loads the file
+
 
