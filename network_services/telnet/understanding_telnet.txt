@@ -1,0 +1,23 @@
+Understanding Telnet 
+
+Telnet is an application layer protocol which allows you, with the use of a telnet client, to connect to and excecute commands on a remote machine hosting 
+a telnet server.
+
+Once the connection has been established the client acts as a terminal that executes the remote commands on the Telnet server.
+
+Replacement
+
+Telnet sends all commands and instruction in plain text and has no specific security mechanism. For most applications it is being replaced by SSH.
+
+How does Telnet Work
+
+You can connect to a Telnet server using the "telnet" command. After which you can execute commands in the Telnet prompt. Use the following syntax to connect
+to a Telnet server:
+	>>> telnet <ip> <port>
+
+Enumerating Telnet
+
+We start the same way we usually do, using nmap to perform a port scan, after this we can evaluate where to go. As with SMB the best way to exploit a Telnet
+server is by finding and using misconfigurations.
+
+
