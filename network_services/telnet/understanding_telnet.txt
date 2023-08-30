@@ -20,4 +20,4 @@ Enumerating Telnet
 We start the same way we usually do, using nmap to perform a port scan, after this we can evaluate where to go. As with SMB the best way to exploit a Telnet
 server is by finding and using misconfigurations.
 
-
+Let's perform an nmap scan. See Telnet in Network Protocols 1, Tryhackme for the results.
