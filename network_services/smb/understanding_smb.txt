@@ -80,5 +80,4 @@ contains his id_rsa file. We download this file, then change it's permissions wi
 NOTE: the command "more" is similar to "cat" in SMB protocol servers.
       mget downloads a file to the cwd
       when using an id_rsa file, use sudo to avoid permission errors when ssh loads the file
-
-
+      Sometimes it is necessary to change the permission of the ir_rsa file to 600 using chmod, always do this to avoid errors.
