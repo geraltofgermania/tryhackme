@@ -1,0 +1,51 @@
+Understanding FTP
+
+File Transfer Protocol is a protocol used to allow the transfer of files over a network. It uses a client-server model to do this,
+and as we'll come on to later - relays commands and data in a very efficient way.
+
+How does FTP work?
+
+A typical FTP session work using two channels:
+	A command channel
+	A data channel
+
+As their names imply the command channel is for transmitting commands and their replies and the data channel is used for transferring
+data.
+
+FTP operates using a client-server model. The clients initiates a connection with the server, the server validates whaterver login
+credentials are provided and then opens the session. While the session is open, the client may execute FTP commands on the server.
+
+Active vs Passive
+
+The FTP server may support active or passive connections, or both.
+
+	In an Active connection, the client opens a port and listens, the server is required to actively connect to it.
+	In a Passive connection,the server passively opens a port and listens and the client connects to it.
+
+This separation of data and command transfer into different channel is important because it makes us able to send commands without
+having to wait for the data transfer to finish. Otherwise, we could only send commands in between data tranfers which wouldn't be
+efficient for slow connections or large data transfers.
+
+We can find much more details on the technical details of FTP in the Internet Engineering Task Force website.
+https://www.ietf.org/rfc/rfc959.txt
+
+Enumerating FTP
+
+Method: in this case we are going to take advantage of a common FTP misconfiguration in which anonynous logins are allowed. Then
+we can explore what files we have available and see if we have any information that will allows us to open a shell on the system.
+This is a common pathway in CTF challanges and mimics a careless implementation of FTP in real life.
+
+Resources
+
+Ensure that ftp client is installed in your system.
+
+Alternative Enumeration Methods
+
+It is worth noting that some vulnerable versions of in.ftpd and some other FTP server variants return different responses to the
+"cwd" command for home directories which exist and those that don't. This can be exploited because you can issue cwd commands before
+authentication, and if there is a home directory there, it's more than likely that there is an user account to go with it. While
+this bug is mainly found in legacy systems, it's good to know as a way to exploit FTP. Here are some more details of this CVE.
+https://www.exploit-db.com/exploits/20745
+
+Exploiting FTP
+
