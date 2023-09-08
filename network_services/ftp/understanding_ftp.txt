@@ -49,3 +49,10 @@ https://www.exploit-db.com/exploits/20745
 
 Exploiting FTP
 
+In the example what we are doing, we find a file with a possible username which we will use to attempt to crack the ftp server login
+with hydra:
+	>>> sudo hydra -t <number of parallel connections> -l <login name> -P <path to dictionary> -vV <ip> <protocol>
+	
+	where -vV is for verbosity.
+
+
