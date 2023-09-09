@@ -46,4 +46,78 @@ It is important that we have this package installed as it contains tools such as
 Primarily, we are concerned with "showmount" and "mount.nfs" as we will need these in order to extract the most information from NFS shares. If
 you want more info on nfs-common you can read https://packages.ubuntu.com/jammy/nfs-common
 
+Mounting NFS Shares
+
+You can mount an NFS share in any directory of your system. First, you create a folder and then use the command "mount" to mount the share in that
+directory.
+	>>> sudo mount -t nfs <IP>:<share> /path/to/mountpoint -nolock
+Where -t stands for type, and then we tell it it's NFS
+-nolock specifies to not use NLM locking
+In the context of enumeration, we can create the mount dir on the folder /tmp/ so that whatever we put in there is deleted upon reboot. 
+
+In order to see the shares in an NFS server use:
+	>>> showmount -e <IP>
+
+In our example, once we mount and explore the share, we find a .ssh folder which contains an id_rsa key file, we copy that file to a different fol-
+der. We then change its permissions to 600, and we can use this in our exploitation stage to gain access via ssh to the server.
+	>>> ssh -i <id_rsa file> <username>@<IP or domain>
+Where -i stands for identity file/id file.
+
+In the same folder we also find a "authorized keys" file with the possible username cappuccino@polons, this is corroborated as it looks like we
+are in a home dir for the user cappuccino.
+
+Exploiting NFS
+
+Now even though we have gained accessed to the machine we are not done. We need to escalate our privileges. Root users who connect to a NFS share
+are given by default a "nfsnobody" user, which has the least local privileges, meaning we can't do much which is not what we want; this is called
+"Root Squashing" .We can however, attempt to escalate our privilege by turning this off; this would allow the creation of bit SUID files, giving
+a remote user root access to the system.
+
+SUID
+
+So what are SUID bit files? Files containing the SUID bitset are files that can be run with the permissions of the file owner/group. So we can run
+these files as the super user to gain access to a shell with these privileges.
+
+Set owner User ID upon execution (SUID). In other words, SUID id files run with the permissions of the file owner rather than the user that is logged
+in at the moment.
+
+Method
+
+We are able to upload files to NFS share, we are also able to create files with whatever permissions we want on our local machine. We can then upload
+these files to the share, login via ssh, and then execute the SUID files (in this case a Bash executable) to gain a privileged shell.
+
+The Executable
+
+We can always do our research for this kind of thing, or even write the script ourselves... in this case we know that the server is Ubuntu version
+18.04, so we look for this and find a script on Github which we download to our machine. Always make sure that you are using a compatible script.
+The file MUST be owned by a root user in order for SUID to work. We can do this by using:
+	>>> sudo chown root <filename>
+
+Then we move the file to the share. Once in the share we add SUID by using:
+	>>> sudo chmod +<permissions> <filename>
+Where "s" in <permissions> gives SUID bitset to the file.
+Then perform a check to see the file permission, making sure it has at least -sr-x:
+	>>> ls -la <filename>
+
+It may be neccessary to add executing permission to the file also with:
+	>>> sudo chmod +x <filename>
+
+After this, we login through SSH and run this file with:
+	>>> ./<filename> -p
+Where "-p" persists the assigned permission as bash will sometime drop these.
+
+Here is a step by step chart of what we've done:
+
+	1. NFS share access
+	2. Gained low privilege shell
+	3. Upload executable to NFS share
+	4. Set SUID permissions through NFS due to misconfigured Root Squash
+	5. Log in via ssh
+	6. Execute the SUID file
+	7. Root access
+
+Low Shell vs Privileged Shell
+
+The difference between these is that as root we will not need to enter a password for sudo and we will be able to do things such as enter the root home
+folder, delete ALL files regardless of location.
 
