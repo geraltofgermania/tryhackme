@@ -36,4 +36,14 @@ https://wiki.archlinux.org/index.php/NFS
 
 Enumerating NFS
 
+Requirements
+
+In order to perform more advanced enumeration of NFS servers, we need a few tools one of which is key: nfs-common. This is usually installed in
+most security OSs like Kali. You can install it with:
+	>>> sudo apt install nfs-common
+
+It is important that we have this package installed as it contains tools such as: lockd, statd, showmount,nfsstat, gssd, idmapd, and mount.nfs
+Primarily, we are concerned with "showmount" and "mount.nfs" as we will need these in order to extract the most information from NFS shares. If
+you want more info on nfs-common you can read https://packages.ubuntu.com/jammy/nfs-common
+
 
