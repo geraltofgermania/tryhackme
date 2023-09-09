@@ -1,0 +1,39 @@
+Understanding NFS
+
+NFS stands for Network File Systems and allows a system to share files and directories over a network. By using NFS user and programs can access
+these files almost as if they were local files. It does this by mounting all, or a portion of a file system on a server. The portion of the file
+system that is mounted can be accessed by clients according to the privileges assigned to each file.
+
+How does NSF work?
+
+We don't need to understand exactly how NFS works in order to exploit it effectively, but if that's something you want to do you can read:
+https://docs.oracle.com/cd/E19683-01/816-4882/6mb2ipq7l/index.html
+
+First, the client will request to mount a directory from the remote host on a local directory. Just the same way it can mount a physical device.
+The mount service will then work to connect to the relevant mount daemon using RPC (Remote Procedure Call).
+
+Then the server checks if the user has the privileges to mount whatever directory or file was requested. The server then returns a file handle
+that uniquely identifies every directory and file that is on the server.
+
+If someone wants to access a file using NFS a RPC call is placed to NFSD (Network File System Daemon). The call contains parameters such as:
+	The file handle
+	The name of the file to be accessed
+	The user's user id
+	The user's group id
+
+These are used in determining access rights to the specified file.
+
+What runs NFS?
+
+Using NFS you can share files between Windows machines and other non-Windows systems, i.e. Mac, Linux, Unix. A computer running Windows server can
+act as a NFS server for non-Windows computers, likewise, NFS allows Windows-based machines to access files in NFS servers hosted by non-Windows
+computers.
+
+Implementation and Technical details for NFS resources:
+https://www.datto.com/library/what-is-nfs-file-share
+http://nfs.sourceforge.net/
+https://wiki.archlinux.org/index.php/NFS
+
+Enumerating NFS
+
+
