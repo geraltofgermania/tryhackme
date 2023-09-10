@@ -1,0 +1,63 @@
+Bounty Hacker CTF on TryHackMe.com
+
+Enumeration:
+
+Performed an nmap scan with:
+	>>> nmap -O -sV -vv -sC <ip> -oN scan.txt
+
+From nmap I find three ports interesting:
+21 ftp 
+22 ssh
+80 http
+
+Now I'll attempt an anonymous ftp login on port 22. The anonymous login was a success. The first thing I do now
+is turning off passive mode with the command
+	ftp> passive
+This way I can enter the 'ls' command and get a directory listing.
+
+Here we find two files, one with the possible username 'lin'.
+We also find what looks to be a password dictionary, so we save that with mget.
+
+Now since we found a possible username and dictionary, let's use hydra to attempt to crack the ssh service.
+	>>> sudo hydra -l lin -P locks.txt -t 4 <protocol>://<ip>
+
+Hydra is successful and we get the user:password combination of lin:RedDr4gonSynd1cat3
+Now let's login via ssh and see what we can find.
+
+Once logged in, we immediately find the user.txt file. However, there is still a root flag for us to find. So let's see
+if we can simply use the password we already have for this user to enter the root direcory. Otherwise we will have to find
+a way to escalate our shell.
+
+So we cannot use lin in order to get access to the root file. Before we go on, let's check the http service running on port
+80.
+We don't really find any info here.
+
+Now I'll attempt to scp an executable file to the lin user's home page to enumerate the Ubuntu machine.
+	>>> scp <file> <username>@<hostdomain>:<path for the file>
+The executable is an enumeration tool from github @ https://github.com/diego-treitos/linux-smart-enumeration
+
+From this I found that there is a vulnerable sudo version installed that we can exploit and we will attempt to do so with
+CVE-2023-22809 which I found after research. It should help us gain a root shell. To do this I'll simply repeat the same
+process as with the executable above but using searchsploit to download the exploit and then after using scp.
+	>>> searchsploit -m <EBD-ID>
+NOTE: EBD-ID = Exploit Database ID
+
+This first attempt did not work. After further research on the vulnerability, I found exploit 47502 which states that any
+rule for what a user shouldn't be able to execute written with the '!' symbol can be bypassed. This exploit is possible
+because when using -u#-1 with sudo, sudo doesn't validate whether that user exists and assigns it an arbitrary ID which runs
+as root. So a command issued as sudo -u#-1 <command> would execute as root.
+
+So in order to become root we run the command:
+	remote-host>>> sudo -u#-1 /bin/bash
+
+Unfortunately, this did not work either... So let's keep trying. From the Linux Smart Enumeration script we also know that
+the machine may be vulnerable to CVE-2021-3156 which states that sudo has a off by 1 error which can result in a heap over-
+flow, which allows escalation via 'sudoedit -s' and command line argument that ends with a single backslash character. So
+let's get a script from ExploitDB and try this one out.
+
+Let's also try the PwnKit vulnerability which is another option from the LSE script.
+After acquiring a copy of the script from Github, scp-ing the script onto the remote host, adding the +x permission and
+runnig it, we open a privileged shell. Now we explore and open the root flag.
+
+Link to the PwnKit Script:
+https://github.com/ly4k/PwnKit
