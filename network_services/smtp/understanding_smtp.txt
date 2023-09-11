@@ -1,0 +1,64 @@
+Understanding SMTP - Simple Mail Transfer Protocol
+
+What is SMTP?
+
+SMTP stands for Simple Mail Transfer Protocol. It is used to handle the sending of emails. In order to support email services,
+a protocol pair is required, comprising of SMTP and POP/IMAP. Together they allow the user to send outgoing email and retrieve
+incoming mail, respectively.
+
+The SMTP server performs 3 basic funcitons:
+	It verifies who is sending the emails through the SMTP server
+	It sends the outgoing emails
+	If the email cannot be delivered, it sends a message back to the sender.
+
+Most people (not me) will have encountered SMTP when configuring a new email address on some third party email clients such as
+Thunderbird; when you configure a new email client, you will need to configure the SMTP server configuration in order to send
+outgoing emails.
+
+POP and IMAP
+
+POP (Post Office Protocol) and IMAP (Internet Message Access Protocol) are both email protocols concerned with the transfer of
+email from an email server to the client. The difference being that POP is much more simplistic in that it downloads the inbox
+to the client. Where IMAP synchronizes the current inbox with new mail on the server, downloading anything new. Also, changes
+made to the inbox in a computer will persist as the change will be synchronized through IMAP.
+
+How does SMTP work?
+
+Email delivery is similar to physical mail. The user supplies the email (like a letter) and a service (like the postal service)
+will deliver the email through a series of steps. The role of SMPT in this service is to act as a sorting office, the email is
+picked up, sent to this server, which redirects it to the recipient.
+
+	Client ------------> SMTP Server
+				        -
+					 -
+					  -
+					   -
+					The Wider Internet
+					   -
+					  -
+					 -
+					-
+	Recipient <--------------- POP/IMAP Server 
+
+In Steps:
+1. The mail agent (like your email client or external program), connects to the SMTP server of your domain, e.g. smtp.google.com
+which initiates the SMTP Handshake. This connection works over the SMTP port which is usually 25. Once the connections has been 
+validated, the SMTP session starts.
+
+2. The process of sending mail can now begin. The client first submits the sender and recipient's email addresses, and the
+body and attachments of the email to the server.
+
+3. The SMTP server then checks whether the domain name of the sender and recipient are the same.
+
+4. The SMPT server of the sender will make a connection to the SMTP server of the recipient before relaying the email. If the
+recipient's server cannot be accessed or is not available, the email will be put into a SMTP queue. 
+
+5. The recipient's SMTP server will verify the incoming email. It does this by checking if the domain name and username have been
+recognized. The server will then send the email to POP or IMAP server. 
+
+6. The email shows up in the recipient's inbox. 
+
+NOTE: in step 2, if the sender and recipient domains are the same, the email goes directly to the recipient's POP or IMAP server.
+Otherwise, the SMTP server has to communicate with a DNS server for the IP address of the recipient. 
+
+NOTE: in step 5, the recipient SMTP server checks through DNS, checks also for a valid destination address, and even the email content.
