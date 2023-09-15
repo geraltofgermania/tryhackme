@@ -62,3 +62,44 @@ NOTE: in step 2, if the sender and recipient domains are the same, the email goe
 Otherwise, the SMTP server has to communicate with a DNS server for the IP address of the recipient. 
 
 NOTE: in step 5, the recipient SMTP server checks through DNS, checks also for a valid destination address, and even the email content.
+
+Emumerating SMTP
+
+Enumerating Server Details
+
+Poorly configured or vulnerable SMTP servers can provide an initial foothold in the network, but before launching an attack we want to
+fingerprint the server to make sure that our targeting is as precise as possible. We will be using the 'smtp_version' module in Meta-
+Sploit to do this. Like its name says, it will scan a range of IP addresses and determine the version of any mail servers it finds.
+
+Enumerating Users from SMTP
+
+The SMTP service has two internal commands that allow for enumerations: VRFY (confirming the names of valid users) and EXPN (which
+reveals the actual address of user's aliases and lists of e-mails). Using these SMTP commands we can reveal a list of valid users.
+
+We can do this manually over a telnet connection, however, MetaSploit comes to the rescue with the module 'smtp_enum' with which
+we can do the same thing by just feeding it a wordlist of usernames and host or list of hosts to enumerate.
+
+Requirements
+
+For this technique, we will need MSF. Make sure that it is installed and updated.
+
+Alternatives
+
+This technique with MSF works well for the majority of SMTP configurations but note that there are other tools such as 'stmp-user-enum'
+that work even better for enumerating OS level accounts on solaris via the SMTP service. Enumeration works by analyzing the res-
+ponse to EXPN, VRFY, and RCPT TO commands.
+
+This technique is something that may be adapted to work well against other vulnerable SMTP daemons in the future. At the time of 
+writing this hasn't been done. But keep it mind as another possible tool. 
+
+The Kali Linux descritption for smtp-user-enum reads: Username guessing tool primarily for use against the default Solaris SMTP service. 
+Can use either EXPN, VRFY or RCPT TO.
+
+NOTE: Telnet can tell us the version of the Mail Transfer Agent (MTA). The MTA is software that relays the electronic mail message
+between computers. Upon logging in with Telnet, the MTA version is usually within the greeting.
+	EXAMPLE "ESMTP Postfix" where Postfix is the MTA.
+
+NOTE: Another great tool to have is Seclists for usernames.
+NOTE: the smtp-enum module of MSF requires a list of usernames.
+
+
