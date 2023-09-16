@@ -1,0 +1,48 @@
+Understanding MySql
+
+In its simplest definition, MySQL is a relational database management system (RDBMS) based on Structured Query Language (SQL).
+This is a lot of acronyms, let's break it down a bit.
+
+Database:
+
+A data is simply a persistent, organized collection of structured data.
+
+RDBMS
+
+A software or service used to create and manage databases based on a relational model. The word relational means that the data
+stored in the dataset is organized as tables. Every table related in some way to each other's "primary key" or other "key"
+factors. This is very well explained in this article: https://www.ibm.com/topics/relational-databases
+
+SQL
+
+MySQL is just the brandname for one of the most popular RDBMSs software implementations. As we know MySQL uses a client-server
+. But how do the client and server communicate. They use a language, specifically called Structured Query Language (SQL).
+
+Many other products such as PostgreSQL, Microsoft SQL server, have the word SQL in them, meaning that the product also uses the
+syntax of Structured Query Language (SQL).
+
+How does MySQL work?
+
+MySQL as a Relational Database Management System is made up of the server and the utility programs that help in the administration
+of MySQL databases. 
+
+The server handles all database instructions such as creating, editing, and accessing data. It takes and handles all these requests
+and communicates over MySQL protocol. The process can be broken down in stages.
+	1. MySQL creates a database for storing and manipulating data, defining the relationship of each table.
+	2. Clients make requests by making specific statments in SQL
+	3. The server will respond to the client with the requested information.
+
+What runs MySQL?
+
+MySQL runs on various platforms from Linux to Windows. It is commonly used as a backend database for prominent websites and forms
+an essesntial component of the LAMP stack which includes: Linux, Apache, MySQL, and PHP.  
+
+More Information:
+
+Here are some resources that explain the technical implementation, and working of, MySQL in more detail than I have covered here:
+
+https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_SQL_EXECUTION.html 
+
+https://www.w3schools.com/php/php_mysql_intro.asp
+
+
