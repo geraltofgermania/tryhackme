@@ -45,4 +45,38 @@ https://dev.mysql.com/doc/dev/mysql-server/latest/PAGE_SQL_EXECUTION.html
 
 https://www.w3schools.com/php/php_mysql_intro.asp
 
+Enumarating MySQL
+
+When would you attack MySQL?
+
+MySQL probably wouldn't be the first avenue of attack when pursuing a target. You can try to brute force accounts and passwords
+if you lack any other information, but this is a poor avenue to follow.
+
+The Scenario
+
+Typically you would have gained some credentials from enumerating and exploiting other serverices that you can then use with the
+MySQL service. For the sake of this scenario we will use that credentials "root:password" that we found from a subdomain in the
+server but won't work with ssh so we will attempt to use them with MySQL.
+
+Requirements
+
+You MUST have at least the MySQL Client installed on your system. You can install it with:
+	>>> sudo apt install default-mysql-client
+Additionally we will use MSF again so make sure you have it.
+
+Alternatives
+
+There is an Nmap script that can be use to enumerate MySQL.
+
+In order to connect to a MySQL server use the command
+	>>> mysql -h <host ip> -u <username> -p <password, if left empty a prompt will ask for it>
+
+For this enumeration we will be using the mysql_sql module of MSF. In this MSF module, the option "SQL" is where you can type SQL
+commands to execute.
+
+Summary: make sure to have MSF and default-mysql-client. Test credentials. Then use mysql_sql for enumeration, first test the
+default "select version()" and then use "show databases"
+
+Expoiting MySQL
+
 
