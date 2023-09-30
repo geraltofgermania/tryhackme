@@ -79,4 +79,21 @@ default "select version()" and then use "show databases"
 
 Expoiting MySQL
 
+Terminology:
+	Scheme: in MySQL the word scheme is interchangeable with database. This is important because in other RDBMS, the word scheme
+	refers only to part of a data base.
+
+	Hashes: simply put, they are the product of a cryptographic algorithm used to turn an input of variable length into an out-
+	put of fixed length.
+
+In MySQL hashes have different uses for example hashes can be used to give an ID to data to create a hash table. This way you can
+search through the hash table faster since it is smaller than the original data but still access the original data.
+
+Also hashes are a way to store passwords not in plain text.
+
+MSF Modules used in MySQL exploitation
+	1. mysql_schemadump
+	2. mysql_hashdump
+Other tools used:
+	John the Ripper as: >>> john <user:*hash file>
 
